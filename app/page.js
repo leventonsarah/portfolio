@@ -4,6 +4,11 @@ import { LocationMarkerIcon } from '@heroicons/react/solid';
 
 import { useState, useEffect } from "react";
 
+export const metadata = {
+  title: "Sarah Leventon",
+  description: "A clean and simple portfolio showcasing my projects.",
+};
+
 export default function Home() {
   const [currentTime, setCurrentTime] = useState(null);
 
