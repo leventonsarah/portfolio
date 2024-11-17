@@ -102,14 +102,17 @@ export default function Home() {
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className="block p-4 border rounded-lg transition bg-blue-600 text-white hover:bg-white hover:text-black"
+            className="block p-4 border rounded-lg transition bg-white dark:bg-gray-800 hover:bg-gray-900 hover:text-white"
           >
-            <h3 className="text-xl font-bold">{title}</h3>
-            <p className="text-sm text-gray-300">{description}</p>
+            <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 hover:!text-white">
+              {title}
+            </h3>
+            <p className="text-sm font-[family-name:var(--font-geist-mono)] text-gray-600 dark:text-gray-300 hover:!text-gray-300">
+              {description}
+            </p>
           </a>
         ))}
       </section>
-      
       <section className="flex flex-col gap-6 w-full max-w-3xl mx-auto">
         <h2 className="text-4xl font-bold mb-4 text-center">Languages</h2>
         <div className="grid gap-4">
@@ -122,16 +125,16 @@ export default function Home() {
           ].map((item, index) => (
             <div
               key={index}
-              className="flex items-center justify-between py-2 px-4 rounded-lg transition bg-blue-600 text-white hover:bg-white hover:text-black"
+              className="flex items-center justify-between py-2 px-4 rounded-lg transition bg-white dark:bg-gray-800"
             >
-              <span className="text-lg font-medium">{item.language}</span>
-              <div className="flex-1 border-t border-gray-300 mx-4"></div>
-              <span className="text-lg">{item.proficiency}</span>
+              <span className="text-lg font-medium text-gray-900 dark:text-white">{item.language}</span>
+              <div className="flex-1 border-t border-gray-300 dark:border-gray-600 mx-4"></div>
+              <span className="text-lg text-gray-500 dark:text-gray-400">{item.proficiency}</span>
             </div>
           ))}
         </div>
       </section>
-      
+
       <section className="flex flex-col gap-6 w-full max-w-3xl mx-auto">
         <h2 className="text-4xl font-bold mb-4 text-center">Awards</h2>
         <div className="grid gap-4">
@@ -149,20 +152,20 @@ export default function Home() {
           ].map((item, index) => (
             <div
               key={index}
-              className="flex items-center justify-between py-2 px-4 rounded-lg transition bg-blue-600 text-white hover:bg-white hover:text-black"
+              className="flex items-center justify-between py-2 px-4 rounded-lg transition bg-white dark:bg-gray-800"
             >
               <div className="flex items-center">
-                <span className="text-lg font-medium">{item.award}</span>
-                <div className="flex-1 border-t border-gray-300 mx-4"></div>
-                <span className="text-lg">{item.competition}</span>
+                <span className="text-lg font-medium text-gray-900 dark:text-white">{item.award}</span>
+                <div className="flex-1 border-t border-gray-300 dark:border-gray-600 mx-4"></div>
+                <span className="text-lg text-gray-500 dark:text-gray-400">{item.competition}</span>
               </div>
-              <div className="flex-1 border-t border-gray-300 mx-4"></div>
-              <span className="text-lg">{item.year}</span>
+              <div className="flex-1 border-t border-gray-300 dark:border-gray-600 mx-4"></div>
+              <span className="text-lg text-gray-500 dark:text-gray-400">{item.year}</span>
             </div>
           ))}
         </div>
       </section>
-      
+
       <section className="flex flex-col w-full max-w-3xl mx-auto">
         <h2 className="text-4xl font-bold mb-4 text-center">Contact</h2>
         <div className="space-y-2">
@@ -184,20 +187,20 @@ export default function Home() {
           ].map((item, index) => (
             <div
               key={index}
-              className="flex items-center justify-start gap-2 px-2 py-1 rounded-lg transition bg-blue-600 text-white hover:bg-white hover:text-black"
+              className="flex items-center justify-start gap-2 px-2 py-1 rounded-lg transition bg-white dark:bg-gray-800"
             >
-              <span className="text-lg font-medium">{item.label}:</span>
+              <span className="text-lg font-medium text-gray-900 dark:text-white">{item.label}:</span>
               {item.link ? (
                 <a
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-400 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 hover:underline"
                 >
                   {item.text}
                 </a>
               ) : (
-                <span className="text-lg">{item.text}</span>
+                <span className="text-lg text-gray-500 dark:text-gray-400">{item.text}</span>
               )}
             </div>
           ))}
@@ -214,3 +217,4 @@ export default function Home() {
     </div>
   );
 }
+
