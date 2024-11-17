@@ -197,13 +197,12 @@ export default function Home() {
       </section>
 
       <footer className="bg-gray-900 text-white text-center p-4 mt-auto rounded-lg">
-  <div className="text-lg font-medium">
-    <p>My time:</p>
-    <p className="text-4xl font-mono">{currentTime}</p>
-    <p className="text-sm">{new Date().toLocaleDateString()}</p>
-  </div>
-</footer>
-
+        <div className="text-lg font-medium">
+          <p>My time:</p>
+          <p className="text-4xl font-mono">{currentTime}</p>
+          <p className="text-sm">{new Date().toLocaleDateString()}</p>
+        </div>
+      </footer>
     </div>
   );
 }
