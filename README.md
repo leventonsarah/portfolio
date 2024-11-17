@@ -6,4 +6,4 @@ A simple and clean portfolio designed to highlight various academic and personal
 
 - **Frontend:** React, Next.js, Tailwind CSS
 - **Version Control:** Git, GitHub
-- **Deployment:** Vercel
+- **Deployment:** Vercel (https://portfolio-git-main-sarah-leventons-projects.vercel.app)
