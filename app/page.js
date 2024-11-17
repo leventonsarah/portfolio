@@ -1,101 +1,209 @@
-import Image from "next/image";
+"use client";
+
+import { LocationMarkerIcon } from '@heroicons/react/solid';
+
+import { useState, useEffect } from "react";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [currentTime, setCurrentTime] = useState(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+    const interval = setInterval(() => {
+      setCurrentTime(
+        new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+      );
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  if (!isClient) {
+    return null;
+  }
+
+  return (
+    <div className="flex flex-col items-center gap-16 px-8 sm:px-20 py-16 font-[family-name:var(--font-geist-sans)]">
+      <header className="text-center">
+        <h1 className="text-6xl font-bold mb-4">Sarah Leventon</h1>
+        <p className="text-lg text-gray-600 flex items-center justify-center mb-2">
+          <LocationMarkerIcon className="w-5 h-5 text-gray-600 mr-2" />
+          Montreal, QC
+        </p>
+        <a
+          href="https://github.com/leventonsarah"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 hover:underline"
+        >
+          GitHub
+        </a>
+      </header>
+
+      <section className="max-w-prose text-center">
+        <p className="text-base font-[family-name:var(--font-geist-mono)]">
+          A third-year student in <strong className="font-bold">Computer Science Technology</strong> at LaSalle College
+          seeking an internship to apply the skills and knowledge acquired
+          throughout her studies.
+        </p>
+      </section>
+
+      <section className="flex gap-4">
+        <a
+          href="/Sarah_Leventon_CV.pdf"
+          download
+          className="px-6 py-2 border rounded-lg bg-gray-900 text-white hover:bg-white hover:text-black transition"
+        >
+          Download my CV
+        </a>
+        <a
+          href="mailto:leventonsarah@gmail.com"
+          className="px-6 py-2 border rounded-lg bg-gray-900 text-white hover:bg-white hover:text-black transition"
+        >
+          Get in touch
+        </a>
+      </section>
+
+      <hr className="w-full border-t border-gray-300" />
+
+      <section className="flex flex-col gap-6 w-full max-w-3xl">
+        <h2 className="text-4xl font-bold mb-4 text-center">Projects</h2>
+        {[
+          {
+            title: "To-do App",
+            description: "A simple and effective task management app.",
+            link: "https://github.com/leventonsarah/todo-app",
+          },
+          {
+            title: "LinkedIn Clone",
+            description: "A modern clone of LinkedIn's interface.",
+            link: "https://github.com/leventonsarah/linkedin-clone",
+          },
+          {
+            title: "Real Estate Site",
+            description: "A modern, responsive real estate website built with Next.js and Tailwind CSS.",
+            link: "https://github.com/leventonsarah/realtor-website",
+          },
+        ].map(({ title, description, link }, index) => (
           <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            key={index}
+            href={link}
             target="_blank"
             rel="noopener noreferrer"
+            className="block p-4 border rounded-lg transition bg-white hover:bg-gray-900 hover:text-white"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+            <h3 className="text-xl font-bold">{title}</h3>
+            <p className="text-sm font-[family-name:var(--font-geist-mono)]">
+              {description}
+            </p>
           </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        ))}
+      </section>
+
+      <section className="flex flex-col gap-6 w-full max-w-3xl mx-auto">
+        <h2 className="text-4xl font-bold mb-4 text-center">Languages</h2>
+        <div className="grid gap-4">
+          {[
+            { language: "English", proficiency: "Native" },
+            { language: "French", proficiency: "Native" },
+            { language: "German", proficiency: "Fluent" },
+            { language: "Spanish", proficiency: "Fluent" },
+            { language: "Korean", proficiency: "Intermediate" },
+          ].map((item, index) => (
+            <div key={index} className="flex items-center justify-between py-2 p-4 rounded-lg transition bg-white">
+              <span className="text-lg font-medium">{item.language}</span>
+              <div className="flex-1 border-t border-gray-300 mx-4"></div>
+              <span className="text-lg text-gray-500">{item.proficiency}</span>
+            </div>
+          ))}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      <section className="flex flex-col gap-6 w-full max-w-3xl mx-auto">
+        <h2 className="text-4xl font-bold mb-4 text-center">Awards</h2>
+        <div className="grid gap-4">
+          {[
+            {
+              award: "Third Place",
+              competition: "Elite International Music Competition",
+              year: "2023",
+            },
+            {
+              award: "First Place",
+              competition: "Concours Inter-Élèves de l’EMVI",
+              year: "2021",
+            },
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="flex items-center justify-between py-2 p-4 rounded-lg transition bg-white"
+            >
+              <div className="flex items-center">
+                <span className="text-lg font-medium">{item.award}</span>
+                <div className="flex-1 border-t border-gray-300 mx-4"></div> 
+                <span className="text-lg text-gray-500">{item.competition}</span> 
+              </div>
+              
+              <div className="flex-1 border-t border-gray-300 mx-4"></div> 
+              
+              <span className="text-lg text-gray-500">{item.year}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="flex flex-col w-full max-w-3xl mx-auto">
+        <h2 className="text-4xl font-bold mb-4 text-center">Contact Me</h2>
+        <div className="space-y-2">
+          {[
+            {
+              label: "Email",
+              link: "mailto:leventonsarah@gmail.com",
+              text: "leventonsarah@gmail.com",
+            },
+            {
+              label: "Phone",
+              text: "+1 (514) 713-0033",
+            },
+            {
+              label: "LinkedIn",
+              link: "http://www.linkedin.com/in/sarah-leventon-57130b330",
+              text: "Connect",
+            },
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="flex items-center justify-start gap-2 p-2 rounded-lg transition bg-white"
+            >
+              <span className="text-lg font-medium">{item.label}:</span>
+
+              {item.link ? (
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  {item.text}
+                </a>
+              ) : (
+                <span className="text-lg text-gray-500">{item.text}</span>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <footer className="bg-gray-900 text-white text-center p-4 mt-auto rounded-lg">
+  <div className="text-lg font-medium">
+    <p>My time:</p>
+    <p className="text-4xl font-mono">{currentTime}</p>
+    <p className="text-sm">{new Date().toLocaleDateString()}</p>
+  </div>
+</footer>
+
     </div>
   );
 }
